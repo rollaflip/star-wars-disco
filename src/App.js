@@ -17,6 +17,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
+          <img src="../public/clone.png" alt=''/>
             Star Wars Disco!!
           </a>
         </header>
