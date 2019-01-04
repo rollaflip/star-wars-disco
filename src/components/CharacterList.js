@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import getCharacterByName from './starWarsApiFetch'
 
 export default class AlbumList extends Component {
 
@@ -6,6 +7,11 @@ export default class AlbumList extends Component {
 
 
   render() {
-    return 'hi'
+    return (
+      <div>
+        <getCharacterByName />
+
+      </div>
+    )
   }
 }

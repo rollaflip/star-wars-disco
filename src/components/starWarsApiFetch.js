@@ -1,11 +1,12 @@
 let axios = require('axios');
 
-const charactersFromApi = 'https://swapi.co/api/people';
+const starWarsURL = 'https://swapi.co/api/people';
 
-const getCharacterByName = character => {
-  // let encodedCharacter = encodeURIComponent(character);
+const getCharacterByName = characterNum => {
+  // let encodedCharacter = encodeURIComponent(characterNum);
+  let characterURL = `${starWarsURL}/${characterNum}`
 
-  return axios.get(charactersFromApi).then(res => {
+  return axios.get(characterURL).then(res => {
     if (res.data) {
       let characters = res.data.results;
       return characters;
@@ -15,3 +16,4 @@ const getCharacterByName = character => {
   });
 };
 export default getCharacterByName;
+
