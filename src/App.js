@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CharacterList from './components/CharacterList'
 
 class App extends Component {
   render() {
     return (
+      <div>
+
+
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src="/stormh.png"className="App-logo" alt="logo" />
           <p>
             Welcome to Ian's Star Wars Disco
           </p>
@@ -17,10 +20,11 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-          <img src="../public/clone.png" alt=''/>
             Star Wars Disco!!
           </a>
         </header>
+      </div>
+      <CharacterList />
       </div>
     );
   }
