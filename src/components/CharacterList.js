@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import getCharacterByName from './starWarsApiFetch'
 
-export default class AlbumList extends Component {
+export default class CharacterList extends Component {
 
 
 
 
   render() {
+    const characters = getCharacterByName()
     return (
       <div>
-        <getCharacterByName />
-
+        {characters}
       </div>
     )
   }
