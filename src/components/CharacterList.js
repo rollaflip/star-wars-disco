@@ -3,6 +3,7 @@ import getCharacterByName from './starWarsApiFetch';
 import { characters } from '../characters';
 import { Grid } from '@material-ui/core';
 import '../CharacterList.css';
+import MovieList from './MovieList'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -21,10 +22,11 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
+    // backgroundColor: 'grey'
   },
   gridList: {
-    width: 500,
+    width: 600,
     height: 450,
     // background: 'grey',
   },
@@ -33,44 +35,54 @@ const styles = theme => ({
   },
 });
 
-function CharacterList(props) {
-  const { classes } = props;
+class CharacterList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chosen: '',
+    };
+  }
 
-  return (
-    <div className='wrap'>
+  render() {
+    const { classes } = this.props;
 
-    <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          {/* <ListSubheader component="div">December</ListSubheader> */}
-        </GridListTile>
-        {characters.map(char => (
-          <GridListTile key={char.img}>
-            <img className='avatar' src={`./${char.name.split(' ')[0]}.jpeg`} alt={char.title} />
+    return (
+      <div className="wrap">
+        <div className={classes.root}>
+          <GridList cellHeight={180} className={classes.gridList}>
+            <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+              {/* <ListSubheader component="div">December</ListSubheader> */}
+            </GridListTile>
+            {characters.map(char => (
+              <GridListTile key={char.img}>
+                <img
+                  className="avatar"
+                  src={`./${char.name.split(' ')[0]}.jpeg`}
+                  alt={char.title}
+                />
 
-            <GridListTileBar
-            style={{height: 'auto'}}
-            title={char.title}
-            subtitle={<span>{char.name}</span>}
-            actionIcon={
-              <IconButton className={classes.icon}>
-                  {/* <InfoIcon /> */}
-                </IconButton>
-              }
-              />
-          </GridListTile>
-        ))}
-      </GridList>
-    </div>
+                <GridListTileBar
+                  style={{ height: 'auto' }}
+                  // title={char.title}
+                  subtitle={<span>{char.name}</span>}
+                  actionIcon={
+                    <IconButton className={classes.icon}>
+                      {/* <InfoIcon /> */}
+                    </IconButton>
+                  }
+                />
+              </GridListTile>
+            ))}
+          </GridList>
+        <MovieList props={this.state}/>
         </div>
-  );
+      </div>
+    );
+  }
 }
-
 CharacterList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(CharacterList);
 // export default class CharacterList extends Component {
-
-
