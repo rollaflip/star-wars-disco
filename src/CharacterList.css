@@ -1,0 +1,10 @@
+.asvatar{
+  width:100%;
+  max-width:600px;
+  height: 100%;
+  /* max-height: 600px; */
+}
+
+.wrap{
+  background: green
+}
