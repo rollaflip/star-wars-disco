@@ -12,7 +12,7 @@ class App extends Component {
 
           <header className="App-header">
             <img src="/stormh.png" className="App-logo" alt="logo" />
-            <p>Click Images For Discography</p>
+            <p>Click Character For Discography</p>
           </header>
 
         </div>

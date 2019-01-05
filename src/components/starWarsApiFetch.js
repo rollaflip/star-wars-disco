@@ -8,8 +8,8 @@ const getCharacterByName = characterNum => {
 
   return axios.get(characterURL).then(res => {
     if (res.data) {
-      let charactersFromWeb = res.data.results;
-      return charactersFromWeb;
+      let movieData = res.data.results;
+      return movieData;
     } else {
       throw new Error(res.data.message);
     }

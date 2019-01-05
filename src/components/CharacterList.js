@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import getCharacterByName from './starWarsApiFetch';
 import { characters } from '../characters';
 import { Grid } from '@material-ui/core';
 import '../CharacterList.css';
@@ -41,7 +40,14 @@ class CharacterList extends Component {
     this.state = {
       chosen: '',
     };
+    // this.selectMe = this.selectMe.bind(this);
   }
+  selectMe=(e)=>{
+    // e.preventDefault()
+    console.log(e.target.alt)
+    this.setState({chosen: e.target.alt}, ()=>{console.log(this.state.chosen)})
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -54,12 +60,13 @@ class CharacterList extends Component {
               {/* <ListSubheader component="div">December</ListSubheader> */}
             </GridListTile>
             {characters.map(char => (
-              <GridListTile key={char.img}>
+
+              <GridListTile key={char.name} className='card' onClick={this.selectMe} value={char.name} >
                 <img
                   className="avatar"
                   src={`./${char.name.split(' ')[0]}.jpeg`}
-                  alt={char.title}
-                />
+                  alt={char.name}
+                  />
 
                 <GridListTileBar
                   style={{ height: 'auto' }}
@@ -70,11 +77,11 @@ class CharacterList extends Component {
                       {/* <InfoIcon /> */}
                     </IconButton>
                   }
-                />
+                  />
               </GridListTile>
             ))}
           </GridList>
-        <MovieList props={this.state}/>
+        <MovieList props={this.state.chosen}/>
         </div>
       </div>
     );
