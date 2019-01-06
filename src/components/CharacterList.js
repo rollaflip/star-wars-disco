@@ -40,12 +40,12 @@ class CharacterList extends Component {
     this.state = {
       chosen: '',
     };
-    // this.selectMe = this.selectMe.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
-  selectMe=(e)=>{
+  handleClick=(e)=>{
     // e.preventDefault()
-    console.log(e.target.alt)
-    this.setState({chosen: e.target.alt}, ()=>{console.log(this.state.chosen)})
+    console.log(e.currentTarget.getAttribute('value'))
+    this.setState({chosen: e.currentTarget.getAttribute('value')}, ()=>{console.log(this.state.chosen)})
   }
 
   render() {
@@ -60,7 +60,7 @@ class CharacterList extends Component {
             </GridListTile>
             {characters.map(char => (
 
-              <GridListTile key={char.name} className='card' onClick={this.selectMe} value={char.name} >
+              <GridListTile key={char.name} className='card' onClick={this.handleClick} value={char.url} >
                 <img
                   className="avatar"
                   src={`./${char.name.split(' ')[0]}.jpeg`}
@@ -69,8 +69,8 @@ class CharacterList extends Component {
 
                 <GridListTileBar
                   style={{ height: 'auto' }}
-                  // title={char.title}
-                  subtitle={<span>{char.name}</span>}
+                  title={char.name}
+                  // subtitle={<span>{char.name}</span>}
                   actionIcon={
                     <IconButton className={classes.icon}>
                       {/* <InfoIcon /> */}
