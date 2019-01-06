@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
-import getCharacterByName from './starWarsApiFetch';
+import getMovies from './starWarsApiFetch';
 
 import { withStyles } from '@material-ui/core/styles';
 
+const styles = theme => ({});
 
-const styles = theme => ({})
+class MovieList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      charDiscog: [],
+    };
+    console.log(props, 'props from movielist');
 
+  }
+  componentDidMount(){
+    // getMovies(this.state.charDiscog)
 
-const MovieList =(props)=>{
-  console.log(props, 'from movielist')
-  return(
-    <div>
+  }
 
-      {/* <img src="./R2-D2.jpeg" alt=""/> */}
-      <p>hi</p>
-    </div>
-  )
-
+    render(){
+      const chosen  = this.props.chosen;
+      // console.log(this.props.chosen)
+      getMovies(chosen)
+      // console.log(bob)
+      return (
+        <div>
+        <li>{this.state.charDiscog[0]}</li>
+        <p>hi</p>
+      </div>
+    );
+  }
 }
+
 
 export default withStyles(styles)(MovieList);

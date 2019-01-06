@@ -48,7 +48,6 @@ class CharacterList extends Component {
     this.setState({chosen: e.target.alt}, ()=>{console.log(this.state.chosen)})
   }
 
-
   render() {
     const { classes } = this.props;
 
@@ -65,7 +64,7 @@ class CharacterList extends Component {
                 <img
                   className="avatar"
                   src={`./${char.name.split(' ')[0]}.jpeg`}
-                  alt={char.name}
+                  alt={char.url}
                   />
 
                 <GridListTileBar
@@ -81,7 +80,7 @@ class CharacterList extends Component {
               </GridListTile>
             ))}
           </GridList>
-        <MovieList props={this.state.chosen}/>
+        <MovieList chosen={this.state.chosen}/>
         </div>
       </div>
     );
