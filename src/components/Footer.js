@@ -9,7 +9,6 @@ class Footer extends Component {
   render() {
     return (
       <div className="footer">
-        {/* Ian Knepper */}
         <span className='foot-links' onClick={()=> window.open("https://github.com/rollaflip/star-wars-disco", "_blank")}>{' '}<i className="fab fa-github"></i>rollaflip</span>
 {' '}
         <span className='foot-links' onClick={()=> window.open("https://www.linkedin.com/in/ianknepper/", "_blank")}><i className="fab fa-linkedin-in" />ianKnepper</span>

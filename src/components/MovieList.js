@@ -29,12 +29,14 @@ class MovieList extends Component {
       headerDisplay: false,
       movieDisplay: true,
       message: '',
+      showLoading:false,
     };
   }
 
   async componentWillReceiveProps(newProps) {
     if (this.props.chosenURL !== newProps.chosenURL) {
-      const discog = await getFilms(newProps.chosenURL);
+      this.setState({showLoading: true})
+            const discog = await getFilms(newProps.chosenURL);
       if (discog.constructor === Array) {
         this.setState({
           charDiscog: discog,
@@ -42,9 +44,11 @@ class MovieList extends Component {
           headerDisplay: true,
           movieDisplay: true,
           message: `Movie appearences By: ${newProps.chosenName}`,
+          showLoading: false
         });
       } else {
         this.setState({
+          showLoading:false,
           movieDisplay: false,
           message: `${discog}: ${
             this.props.chosenName
@@ -67,9 +71,11 @@ class MovieList extends Component {
   render() {
     const { classes } = this.props;
     const films = this.state.charDiscog;
-    const chosenName = this.state.chosenName;
     const message = this.state.message;
 
+  if(this.state.showLoading){
+    return <img src='./SWspinner.gif' alt='loader' className='loader'/>
+  }else{
     if (this.state.movieDisplay) {
       return (
         <div>
@@ -103,17 +109,19 @@ class MovieList extends Component {
                 </GridListTile>
               ))}
             </GridList>
-            {/* <MovieList chosen={this.state.chosen} /> */}
           </div>
         </div>
       );
-    } else
+    } else{
+
       return (
         <div>
           <p className="message">{message}</p>
         </div>
       );
+    }
+
+}
   }
 }
-
 export default withStyles(styles)(MovieList);

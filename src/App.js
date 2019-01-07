@@ -9,7 +9,6 @@ class App extends Component {
       <div className="background-image">
         <div className="App">
           <header className="App-header">
-            {/* <img src="/stormh.png" className="App-logo" alt="logo" /> */}
             <h2>Click Character For Discography</h2>
           </header>
         <CharacterList />

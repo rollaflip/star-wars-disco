@@ -54,7 +54,6 @@ class CharacterList extends Component {
         <div className={classes.root}>
           <GridList cellHeight={180} cols={4} className={classes.gridList}>
             <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
-              {/* <ListSubheader component="div">December</ListSubheader> */}
             </GridListTile>
             {characters.map((char, index) => (
               <GridListTile
