@@ -27,14 +27,28 @@ class MovieList extends Component {
     }
   }
 
+  movieMapper = ()=>{
+    const fetchedMovies= null
+      if(this.state.charDiscog.length) fetchedMovies = this.state.charDiscog
+  }
+
     render(){
       const chosen  = this.props.chosen;
       // console.log(this.props.chosen)
       // getMovies(chosen)
-      // console.log(bob)
+
       return (
+
         <div>
-        {/* <li>{this.state.charDiscog[0]}</li> */}
+        {this.state.charDiscog.map(film =>{
+          return(
+            <div>
+            <li key={film.data.episode_id}>{film.data.title}</li>
+            <li>{film.data.release_date}</li>
+            </div>
+          )
+
+        })}
         <p>hi</p>
       </div>
     );
