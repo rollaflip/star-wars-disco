@@ -2,18 +2,18 @@
 #### By Ian Knepper
 Its live!  [Click for Deloyed App](https://star-wars-disco.herokuapp.com/)
 
-Star Wars Disco performs Axios requests to the SWAPI API and displays character discograpys.<br>
+Star Wars Disco performs Axios requests to the SWAPI API and displays character discographys.<br>
 
-NOTE: Obi-wan's URL is intentionally incorrect, check out the app's error handling.
+NOTE: Obi-wan's URL is intentionally incorrect... Check out the app's error handling!
 
 ### To run Star Wars Disco locally:
 Install dependencies via npm
 ```
-`npm install`
+npm install
 ```
 Launch server in your broswer
 ```
-`npm start`
+npm start
 ```
 
 Runs the app in the development mode.<br>
