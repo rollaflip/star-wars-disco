@@ -43,3 +43,7 @@
   top: 0;
   left: 0;
 }
+
+img:hover {
+  opacity: 0.85;
+}
