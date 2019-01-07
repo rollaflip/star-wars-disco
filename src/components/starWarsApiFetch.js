@@ -9,7 +9,7 @@ const getFilms = async characterURL => {
     return filmDataList;
   } catch (error) {
     console.log(error.toString(), '^^^^^^^^^^^^');
-    return error.toString();
+    return error;
   }
 };
 

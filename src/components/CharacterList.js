@@ -8,7 +8,6 @@ import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
 
 const styles = theme => ({
   root: {
@@ -16,13 +15,11 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    // backgroundColor: theme.palette.background.paper,
-    // backgroundColor: 'grey'
+
   },
   gridList: {
     width: 900,
     height: 225,
-    // background: 'grey',
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -38,8 +35,7 @@ class CharacterList extends Component {
     };
   }
   handleClick = e => {
-    // e.preventDefault()
-    // console.log(e.currentTarget.getAttribute('value'));
+    e.preventDefault()
     this.setState(
       {
         chosenURL: e.currentTarget.getAttribute('value'),

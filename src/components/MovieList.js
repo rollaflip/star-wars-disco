@@ -44,6 +44,7 @@ class MovieList extends Component {
             charDiscog: discog,
             chosenName: newProps.chosenName,
             headerDisplay: true,
+            movieDisplay: true,
             message: `Movie appearences By: ${newProps.chosenName}`,
           },
           console.log(this.state.charDiscog, this.state.chosenName)
@@ -56,7 +57,6 @@ class MovieList extends Component {
           } CANNOT BE FOUND IN THIS GALAXY`,
         });
       }
-      // console.log(this.state.chosenName)
     }
   }
 
@@ -95,7 +95,7 @@ class MovieList extends Component {
                 <GridListTile key={`card ${index}`}>
                   <img
                     key={`img ${index}`}
-                    src={`./swlogo.jpg`}
+                    src={`./${film.data.title}.jpg`}
                     alt={film.data.episode_id}
                   />
 
