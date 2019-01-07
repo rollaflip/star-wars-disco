@@ -6,7 +6,6 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-// import InfoIcon from '@material-ui/icons/Info';
 
 const styles = theme => ({
   root: {
@@ -14,7 +13,6 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'show',
-    // backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     width: 900,
@@ -32,23 +30,19 @@ class MovieList extends Component {
       movieDisplay: true,
       message: '',
     };
-    console.log(props, 'props from movielist');
   }
 
   async componentWillReceiveProps(newProps) {
     if (this.props.chosenURL !== newProps.chosenURL) {
       const discog = await getFilms(newProps.chosenURL);
       if (discog.constructor === Array) {
-        this.setState(
-          {
-            charDiscog: discog,
-            chosenName: newProps.chosenName,
-            headerDisplay: true,
-            movieDisplay: true,
-            message: `Movie appearences By: ${newProps.chosenName}`,
-          },
-          console.log(this.state.charDiscog, this.state.chosenName)
-        );
+        this.setState({
+          charDiscog: discog,
+          chosenName: newProps.chosenName,
+          headerDisplay: true,
+          movieDisplay: true,
+          message: `Movie appearences By: ${newProps.chosenName}`,
+        });
       } else {
         this.setState({
           movieDisplay: false,
@@ -74,8 +68,7 @@ class MovieList extends Component {
     const { classes } = this.props;
     const films = this.state.charDiscog;
     const chosenName = this.state.chosenName;
-    const message = this.state.message
-    // if(this.state.headerDisplay) this.setState({message : `Movie appearences By: ${chosenName}`})
+    const message = this.state.message;
 
     if (this.state.movieDisplay) {
       return (

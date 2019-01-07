@@ -42,7 +42,6 @@ class CharacterList extends Component {
         chosenName: e.currentTarget.getAttribute('name'),
       },
       () => {
-        console.log(this.state.chosenURL, this.state.chosenName);
       }
     );
   };
@@ -74,7 +73,6 @@ class CharacterList extends Component {
                   key={`title bar ${index}`}
                   style={{ height: 'auto' }}
                   title={char.name}
-                  // subtitle={<span>{char.name}</span>}
                 />
               </GridListTile>
             ))}

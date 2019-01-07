@@ -1,9 +1,7 @@
 .footer {
   width: 72.5%;
   margin: 0 auto;
-
   background: rgba(255, 255, 255, 0.733);
-  /* box-shadow: 0 0 0.05px 0.5px rgba(255, 255, 255, 0.733); */
   padding-bottom: 10px;
   padding-top: 10px;
   bottom: 0;
@@ -14,10 +12,10 @@
   padding-right: 5px;
   font-size: 18px;
 }
-i{
-  padding-right: 5px
+i {
+  padding-right: 5px;
 }
 
-span{
+span {
   cursor: pointer;
 }

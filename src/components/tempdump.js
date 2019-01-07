@@ -34,7 +34,6 @@ class MovieList extends Component {
       error: null,
       errorInfo: null,
     };
-    console.log(props, 'props from movielist');
   }
 
   async componentWillReceiveProps(newProps) {
@@ -50,7 +49,6 @@ class MovieList extends Component {
             message: `Movie appearences By: ${newProps.chosenName}`,
             error:null
           },
-          console.log(this.state.charDiscog, this.state.chosenName)
         );
       // } else {
       //   this.setState({
