@@ -2,12 +2,11 @@
 #### By Ian Knepper
 Its live!  [Click for Deloyed App](https://star-wars-disco.herokuapp.com/)
 
-Star Wars Disco performs Axios requests to the SWAPI API and displays albums by artist.<br>
-The album grid is responsive to window size.
+Star Wars Disco performs Axios requests to the SWAPI API and displays character discograpys.<br>
 
 NOTE: Obi-wan's URL is intentionally incorrect, check out the app's error handling.
 
-### To run Star Wars Disco in your browser:
+### To run Star Wars Disco locally:
 Install dependencies via npm
 ```
 `npm install`
@@ -26,9 +25,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 * Javascript ES6
 * React
 * Styled w/ Material UI/ CSS Classes
-* Bundling w/ webpack/ Babel
+* HTTP requests via Axios
+* Bundled w/ webpack/ Babel
 * Bootstrapped w/ Create React App
-* Deployed w/ Heroku
+* Deployed w/ [Heroku](https://star-wars-disco.herokuapp.com/)
 * Live Continuous Delivery VIA Heroku synced w/ gitHub
 * SWAPI - [Star Wars API](http://swapi.co)
 
