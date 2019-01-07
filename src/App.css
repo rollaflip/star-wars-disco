@@ -10,12 +10,16 @@
 .App-header {
   /* background-color: #282c34; */
   height: 10%;
+  width: 72.5%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  background-color: rgba(0, 0, 0, 0.692);
+
 }
 
 .App-link {
@@ -31,10 +35,10 @@
   }
 }
 
-.image {
+.background-image {
   background-image: url('./desert.jpg');
   background-size: cover;
-  z-index: -10;
+  z-index: -5;
   height: 100vh;
   width: 100vw;
   position: absolute;
@@ -42,6 +46,13 @@
   left: 0;
 }
 
-.wrapper {
-  background-color: ivory;
-}
+/* .wrapper {
+  background-image: url('./swbann2.jpg');
+  background-size: cover;
+  z-index: -8;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+} */

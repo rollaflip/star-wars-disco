@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { characters } from '../characters';
-import { Grid } from '@material-ui/core';
 import '../CharacterList.css';
 import MovieList from './MovieList';
 
@@ -11,7 +10,6 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
-import { green } from '@material-ui/core/colors';
 // import InfoIcon from '@material-ui/icons/Info';
 
 const styles = theme => ({
@@ -24,8 +22,8 @@ const styles = theme => ({
     // backgroundColor: 'grey'
   },
   gridList: {
-    width: 600,
-    height: 450,
+    width: 900,
+    height: 225,
     // background: 'grey',
   },
   icon: {
@@ -38,13 +36,14 @@ class CharacterList extends Component {
     super(props);
     this.state = {
       chosen: '',
+      chosenName:''
     };
   }
   handleClick = e => {
     // e.preventDefault()
-    console.log(e.currentTarget.getAttribute('value'));
-    this.setState({ chosen: e.currentTarget.getAttribute('value') }, () => {
-      console.log(this.state.chosen);
+    // console.log(e.currentTarget.getAttribute('value'));
+    this.setState({ chosen: e.currentTarget.getAttribute('value') , chosenName: e.currentTarget.getAttribute('name')}, () => {
+      console.log(this.state.chosen, this.state.chosenName);
     });
   };
 
@@ -54,26 +53,27 @@ class CharacterList extends Component {
     return (
       <div className="wrap">
         <div className={classes.root}>
-          <GridList cellHeight={180} className={classes.gridList}>
-            <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+          <GridList cellHeight={180} cols={4} className={classes.gridList} >
+            <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
               {/* <ListSubheader component="div">December</ListSubheader> */}
             </GridListTile>
-            {characters.map((char,index) => (
+            {characters.map((char, index) => (
               <GridListTile
                 key={`title ${index}`}
                 className="card"
                 onClick={this.handleClick}
                 value={char.url}
+                name={char.name}
               >
                 <img
-                key={`img ${index}`}
+                  key={`img ${index}`}
                   className="avatar"
                   src={`./${char.name.split(' ')[0]}.jpeg`}
                   alt={char.url}
                 />
 
                 <GridListTileBar
-                key={`title bar ${index}`}
+                  key={`title bar ${index}`}
                   style={{ height: 'auto' }}
                   title={char.name}
                   // subtitle={<span>{char.name}</span>}
@@ -86,7 +86,10 @@ class CharacterList extends Component {
               </GridListTile>
             ))}
           </GridList>
-          <MovieList chosen={this.state.chosen} />
+        </div>
+        <div>
+        <MovieList chosen={this.state.chosen} chosenName={this.state.chosenName}/>
+
         </div>
       </div>
     );
