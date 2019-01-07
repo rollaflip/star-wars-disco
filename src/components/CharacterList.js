@@ -33,7 +33,7 @@ class CharacterList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chosen: '',
+      chosenURL: '',
       chosenName: '',
     };
   }
@@ -42,11 +42,11 @@ class CharacterList extends Component {
     // console.log(e.currentTarget.getAttribute('value'));
     this.setState(
       {
-        chosen: e.currentTarget.getAttribute('value'),
+        chosenURL: e.currentTarget.getAttribute('value'),
         chosenName: e.currentTarget.getAttribute('name'),
       },
       () => {
-        console.log(this.state.chosen, this.state.chosenName);
+        console.log(this.state.chosenURL, this.state.chosenName);
       }
     );
   };
@@ -86,7 +86,7 @@ class CharacterList extends Component {
         </div>
         <div>
           <MovieList
-            chosen={this.state.chosen}
+            chosenURL={this.state.chosenURL}
             chosenName={this.state.chosenName}
           />
         </div>

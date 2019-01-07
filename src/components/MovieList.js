@@ -29,15 +29,15 @@ class MovieList extends Component {
       charDiscog: [],
       chosenName: '',
       headerDisplay: false,
-      message: '',
       movieDisplay: true,
+      message: '',
     };
     console.log(props, 'props from movielist');
   }
 
   async componentWillReceiveProps(newProps) {
-    if (this.props.chosen !== newProps.chosen) {
-      const discog = await getFilms(newProps.chosen);
+    if (this.props.chosenURL !== newProps.chosenURL) {
+      const discog = await getFilms(newProps.chosenURL);
       if (discog.constructor === Array) {
         this.setState(
           {
@@ -92,7 +92,7 @@ class MovieList extends Component {
             >
               <GridListTile cols={4} style={{ height: 'auto' }} />
               {films.map((film, index) => (
-                <GridListTile >
+                <GridListTile key={`card ${index}`}>
                   <img
                     key={`img ${index}`}
                     src={`./swlogo.jpg`}
