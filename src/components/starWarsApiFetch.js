@@ -1,39 +1,18 @@
 import axios from 'axios';
 
-const getMovies = async characterURL => {
-  const getMovieURLs = async () => {
-    try {
-      const charData = await axios.get(characterURL);
-      return charData.data.films;
-    } catch (error) {
-      return error;
-    }
-  };
-  const getMovieData = async filmURL => {
-    try {
-      const movieData = await axios.get(filmURL);
-      return movieData;
-    } catch (error) {
-      return error;
-    }
-  };
-  console.log(characterURL);
-
-
+const getFilms = async characterURL => {
   try {
-    const movieURLList = await getMovieURLs();
-      const movieDataList = await Promise.all(
-        movieURLList.map(movieURL => {
-          return getMovieData(movieURL);
-        })
-      );
-      if (movieDataList) {
-        console.log(movieDataList);
-        return movieDataList;
-      }
+    const filmLinksList = await axios.get(characterURL);
+    const { films } = filmLinksList.data;
+    const filmDataList = await axios.all(
+      films.map(film => axios.get(film))
+    );
+    console.log(filmDataList)
+    return filmDataList;
   } catch (error) {
-    return error;
+    console.log(error.toString(), '^^^^^^^^^^^^');
+    return error.toString();
   }
-  // else console.log('ERRRROR DOGGG');
 };
-export default getMovies;
+
+export default getFilms;

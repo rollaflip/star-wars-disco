@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import getMovies from './starWarsApiFetch';
+import getFilms from './starWarsApiFetch';
 
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -28,17 +28,34 @@ class MovieList extends Component {
     this.state = {
       charDiscog: [],
       chosenName: '',
+      headerDisplay: false,
+      message: '',
+      movieDisplay: true,
     };
     console.log(props, 'props from movielist');
   }
 
   async componentWillReceiveProps(newProps) {
     if (this.props.chosen !== newProps.chosen) {
-      const discog = await getMovies(newProps.chosen);
-      this.setState(
-        { charDiscog: discog, chosenName: newProps.chosenName },
-        console.log(this.state.charDiscog, this.state.chosenName)
-      );
+      const discog = await getFilms(newProps.chosen);
+      if (discog.constructor === Array) {
+        this.setState(
+          {
+            charDiscog: discog,
+            chosenName: newProps.chosenName,
+            headerDisplay: true,
+            message: `Movie appearences By: ${newProps.chosenName}`,
+          },
+          console.log(this.state.charDiscog, this.state.chosenName)
+        );
+      } else {
+        this.setState({
+          movieDisplay: false,
+          message: `${discog}: ${
+            this.props.chosenName
+          } CANNOT BE FOUND IN THIS GALAXY`,
+        });
+      }
       // console.log(this.state.chosenName)
     }
   }
@@ -57,41 +74,52 @@ class MovieList extends Component {
     const { classes } = this.props;
     const films = this.state.charDiscog;
     const chosenName = this.state.chosenName;
+    const message = this.state.message
+    // if(this.state.headerDisplay) this.setState({message : `Movie appearences By: ${chosenName}`})
 
-    return (
-      <div className={classes.root}>
-        <GridList
-          cellHeight={90}
-          cols={4}
-          className={classes.gridList}
-          style={{ marginBottom: 10 }}
-        >
-          <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
-            <ListSubheader component="div">{`Movie appearences By: ${chosenName}`}</ListSubheader>
-          </GridListTile>
-          {films.map((film, index) => (
-            <GridListTile className="card">
-              <img
-                key={`img ${index}`}
-                className="avatar"
-                src={`./swlogo.jpg`}
-                alt={film.data.episode_id}
-              />
+    if (this.state.movieDisplay) {
+      return (
+        <div>
+          <div>
+            <p className="message">{message}</p>
+          </div>
+          <div className={classes.root}>
+            <GridList
+              cellHeight={90}
+              cols={4}
+              className={classes.gridList}
+              style={{ marginBottom: 0, marginTop: 12 }}
+            >
+              <GridListTile cols={4} style={{ height: 'auto' }} />
+              {films.map((film, index) => (
+                <GridListTile >
+                  <img
+                    key={`img ${index}`}
+                    src={`./swlogo.jpg`}
+                    alt={film.data.episode_id}
+                  />
 
-              <GridListTileBar
-                key={`title bar ${index}`}
-                style={{ height: 'auto' }}
-                title={film.data.title}
-                subtitle={
-                  <span>{this.dateFormater(film.data.release_date)}</span>
-                }
-              />
-            </GridListTile>
-          ))}
-        </GridList>
-        {/* <MovieList chosen={this.state.chosen} /> */}
-      </div>
-    );
+                  <GridListTileBar
+                    key={`title bar ${index}`}
+                    style={{ height: 'auto' }}
+                    title={film.data.title}
+                    subtitle={
+                      <span>{this.dateFormater(film.data.release_date)}</span>
+                    }
+                  />
+                </GridListTile>
+              ))}
+            </GridList>
+            {/* <MovieList chosen={this.state.chosen} /> */}
+          </div>
+        </div>
+      );
+    } else
+      return (
+        <div>
+          <p className="message">{message}</p>
+        </div>
+      );
   }
 }
 

@@ -9,8 +9,6 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-// import InfoIcon from '@material-ui/icons/Info';
 
 const styles = theme => ({
   root: {
@@ -36,15 +34,21 @@ class CharacterList extends Component {
     super(props);
     this.state = {
       chosen: '',
-      chosenName:''
+      chosenName: '',
     };
   }
   handleClick = e => {
     // e.preventDefault()
     // console.log(e.currentTarget.getAttribute('value'));
-    this.setState({ chosen: e.currentTarget.getAttribute('value') , chosenName: e.currentTarget.getAttribute('name')}, () => {
-      console.log(this.state.chosen, this.state.chosenName);
-    });
+    this.setState(
+      {
+        chosen: e.currentTarget.getAttribute('value'),
+        chosenName: e.currentTarget.getAttribute('name'),
+      },
+      () => {
+        console.log(this.state.chosen, this.state.chosenName);
+      }
+    );
   };
 
   render() {
@@ -53,21 +57,19 @@ class CharacterList extends Component {
     return (
       <div className="wrap">
         <div className={classes.root}>
-          <GridList cellHeight={180} cols={4} className={classes.gridList} >
+          <GridList cellHeight={180} cols={4} className={classes.gridList}>
             <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
               {/* <ListSubheader component="div">December</ListSubheader> */}
             </GridListTile>
             {characters.map((char, index) => (
               <GridListTile
                 key={`title ${index}`}
-                className="card"
                 onClick={this.handleClick}
                 value={char.url}
                 name={char.name}
               >
                 <img
                   key={`img ${index}`}
-                  className="avatar"
                   src={`./${char.name.split(' ')[0]}.jpeg`}
                   alt={char.url}
                 />
@@ -77,19 +79,16 @@ class CharacterList extends Component {
                   style={{ height: 'auto' }}
                   title={char.name}
                   // subtitle={<span>{char.name}</span>}
-                  actionIcon={
-                    <IconButton className={classes.icon}>
-                      {/* <InfoIcon /> */}
-                    </IconButton>
-                  }
                 />
               </GridListTile>
             ))}
           </GridList>
         </div>
         <div>
-        <MovieList chosen={this.state.chosen} chosenName={this.state.chosenName}/>
-
+          <MovieList
+            chosen={this.state.chosen}
+            chosenName={this.state.chosenName}
+          />
         </div>
       </div>
     );
