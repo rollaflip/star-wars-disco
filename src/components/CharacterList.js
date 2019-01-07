@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { characters } from '../characters';
 import { Grid } from '@material-ui/core';
 import '../CharacterList.css';
-import MovieList from './MovieList'
+import MovieList from './MovieList';
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,7 +13,6 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import { green } from '@material-ui/core/colors';
 // import InfoIcon from '@material-ui/icons/Info';
-// import characters from './characters';
 
 const styles = theme => ({
   root: {
@@ -40,13 +39,14 @@ class CharacterList extends Component {
     this.state = {
       chosen: '',
     };
-    // this.handleClick = this.handleClick.bind(this);
   }
-  handleClick=(e)=>{
+  handleClick = e => {
     // e.preventDefault()
-    console.log(e.currentTarget.getAttribute('value'))
-    this.setState({chosen: e.currentTarget.getAttribute('value')}, ()=>{console.log(this.state.chosen)})
-  }
+    console.log(e.currentTarget.getAttribute('value'));
+    this.setState({ chosen: e.currentTarget.getAttribute('value') }, () => {
+      console.log(this.state.chosen);
+    });
+  };
 
   render() {
     const { classes } = this.props;
@@ -58,16 +58,22 @@ class CharacterList extends Component {
             <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
               {/* <ListSubheader component="div">December</ListSubheader> */}
             </GridListTile>
-            {characters.map(char => (
-
-              <GridListTile key={char.name} className='card' onClick={this.handleClick} value={char.url} >
+            {characters.map((char,index) => (
+              <GridListTile
+                key={`title ${index}`}
+                className="card"
+                onClick={this.handleClick}
+                value={char.url}
+              >
                 <img
+                key={`img ${index}`}
                   className="avatar"
                   src={`./${char.name.split(' ')[0]}.jpeg`}
                   alt={char.url}
-                  />
+                />
 
                 <GridListTileBar
+                key={`title bar ${index}`}
                   style={{ height: 'auto' }}
                   title={char.name}
                   // subtitle={<span>{char.name}</span>}
@@ -76,11 +82,11 @@ class CharacterList extends Component {
                       {/* <InfoIcon /> */}
                     </IconButton>
                   }
-                  />
+                />
               </GridListTile>
             ))}
           </GridList>
-        <MovieList chosen={this.state.chosen}/>
+          <MovieList chosen={this.state.chosen} />
         </div>
       </div>
     );
@@ -91,4 +97,3 @@ CharacterList.propTypes = {
 };
 
 export default withStyles(styles)(CharacterList);
-// export default class CharacterList extends Component {

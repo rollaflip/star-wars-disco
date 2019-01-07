@@ -12,48 +12,43 @@ class MovieList extends Component {
       charDiscog: [],
     };
     console.log(props, 'props from movielist');
-
   }
-  // componentDidMount(){
-  //   // getMovies(this.state.charDiscog)
 
-  // }
   async componentWillReceiveProps(newProps) {
-    // console.log(newProps.chosen, 'xxxxx')
     if (this.props.chosen !== newProps.chosen) {
-      const discog = await getMovies(newProps.chosen)
-      // console.log(newProps)
-      this.setState({charDiscog :  discog},console.log(this.state.charDiscog))
+      const discog = await getMovies(newProps.chosen);
+      this.setState({ charDiscog: discog }, console.log(this.state.charDiscog));
     }
   }
 
-  movieMapper = ()=>{
-    const fetchedMovies= null
-      if(this.state.charDiscog.length) fetchedMovies = this.state.charDiscog
-  }
+  dateFormater = date => {
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+    return new Date(date).toLocaleDateString('eng', options);
+  };
 
-    render(){
-      const chosen  = this.props.chosen;
-      // console.log(this.props.chosen)
-      // getMovies(chosen)
+  render() {
+    const films = this.state.charDiscog;
 
-      return (
-
-        <div>
-        {this.state.charDiscog.map(film =>{
-          return(
-            <div>
-            <li key={film.data.episode_id}>{film.data.title}</li>
-            <li>{film.data.release_date}</li>
+    return (
+      <div>
+        {films.map((film, index) => {
+          return (
+            <div key={index}>
+              <li key={`title ${index}`}>{film.data.title}</li>
+              <li key={`release date ${index}`}>
+                {this.dateFormater(film.data.release_date)}
+              </li>
             </div>
-          )
-
+          );
         })}
-        <p>hi</p>
       </div>
     );
   }
 }
-
 
 export default withStyles(styles)(MovieList);

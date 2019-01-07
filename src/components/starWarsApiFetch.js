@@ -1,8 +1,6 @@
 import axios from 'axios';
 
 const getMovies = async characterURL => {
-  console.log(characterURL);
-
   const getMovieURLs = async () => {
     try {
       const charData = await axios.get(characterURL);
@@ -19,10 +17,11 @@ const getMovies = async characterURL => {
       return error;
     }
   };
+  console.log(characterURL);
+
 
   try {
     const movieURLList = await getMovieURLs();
-    if (movieURLList) {
       const movieDataList = await Promise.all(
         movieURLList.map(movieURL => {
           return getMovieData(movieURL);
@@ -32,7 +31,6 @@ const getMovies = async characterURL => {
         console.log(movieDataList);
         return movieDataList;
       }
-    }
   } catch (error) {
     return error;
   }
