@@ -6,6 +6,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 const styles = theme => ({
   root: {
@@ -31,6 +32,21 @@ class MovieList extends Component {
       message: '',
       showLoading:false,
     };
+  }
+  getGridListCols = (props) => {
+    if (isWidthUp('xl', props.width)) {
+      return 4;
+    }
+
+    if (isWidthUp('lg', props.width)) {
+      return 3;
+    }
+
+    if (isWidthUp('md', props.width)) {
+      return 2;
+    }
+
+    return 1;
   }
 
   async componentWillReceiveProps(newProps) {
